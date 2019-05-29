@@ -1,5 +1,7 @@
 package com.sofi.interview.transaction_service;
 
+import static com.sofi.interview.transaction_service.Utils.APPLICATION_JSON;
+
 import com.sofi.interview.transaction_service.handlers.GetHandler;
 import com.sofi.interview.transaction_service.handlers.PostHandler;
 import io.vertx.core.AbstractVerticle;
@@ -12,11 +14,10 @@ import lombok.extern.log4j.Log4j;
 public class MainVerticle extends AbstractVerticle {
 
   private static final String API_ENDPOINT = "/v1/transaction";
-  private static final String APPLICATION_JSON = "application/json";
   private static final int PORT = 8080;
 
   @Override
-  public void start(Future<Void> startFuture) throws Exception {
+  public void start(Future<Void> startFuture) {
 
     Router router = Router.router(this.vertx);
     mountRoutes(router);
