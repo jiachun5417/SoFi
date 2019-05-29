@@ -1,0 +1,61 @@
+swagger: "2.0"
+info:
+  description: "SoFi Coding Assessment"
+  version: "1.0.0"
+  title: "Transaction Service"
+host: "localhost:8080"
+basePath: "/v1"
+schemes:
+- "http"
+paths:
+  /transaction:
+    post:
+      summary: "Add a transaction"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+         $ref: "#/definitions/Transaction"
+      responses:
+        200:
+          description: "ok"
+        400:
+          description: "Invalid input"
+    get:
+      summary: "Get top 3 merchant for a given user"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "header"
+        name: "user-id"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "ok"
+        400:
+          description: "Invalid user-id supplied"
+        420:
+          description: "Insufficient number of transactions"
+definitions:
+  Transaction:
+    type: "object"
+    properties:
+      user-id:
+        type: "integer"
+      merchant:
+        type: "string"
+      price:
+        type: "number"
+      purchase-date:
+        type: "string"
+        format: "date-time"
+      tx-id:
+        type: "integer"
